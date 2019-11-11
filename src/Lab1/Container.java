@@ -1,6 +1,5 @@
 package Lab1;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /*
@@ -12,6 +11,9 @@ public class Container {
    private int weight;
    private double cost;
 
+   public Container(){
+   }// Constructor
+
    // Constants
    private final int DISCOUNTNUMBER = 5, HIGHWEIGHT = 1000, HIGHCOST = 1200,
                       LOWWEIGHT = 500, MIDDLECOST =750, LOWCOST =400;
@@ -21,7 +23,7 @@ public class Container {
       // Scanner
       Scanner sc = new Scanner(System.in);
       //User prompt
-      System.out.print("Please enter the weight of container" + number +
+      System.out.print("Please enter the weight of container " + number +
             " (in KG) or -1 to finish:");
       weight = sc.nextInt();
       return weight;
