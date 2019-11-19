@@ -1,5 +1,6 @@
 package Lab1;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /*
@@ -15,11 +16,12 @@ public class Container {
    }// Constructor
 
    // Constants
-   private final int DISCOUNTNUMBER = 5, HIGHWEIGHT = 1000, HIGHCOST = 1200,
+   private static final int DISCOUNTNUMBER = 5, HIGHWEIGHT = 1000, HIGHCOST = 1200,
                       LOWWEIGHT = 500, MIDDLECOST =750, LOWCOST =400;
-   private final double DISCOUNTRATE = 0.25;
+   private static final double DISCOUNTRATE = 0.25;
 
-   public int getWeight(int number) {
+   public static int getWeight(int number) {
+      int weight;
       // Scanner
       Scanner sc = new Scanner(System.in);
       //User prompt
@@ -29,7 +31,8 @@ public class Container {
       return weight;
    }
 
-   public double calculateCost(int number, int weight){
+   public static double calculateCost(int number, int weight){
+      double cost;
       if (weight > HIGHWEIGHT){
          cost = HIGHCOST;
       }//if
@@ -47,4 +50,27 @@ public class Container {
       return cost;
    }
 
+   public static void main (String [] args) {
+      // Variables and objects
+      DecimalFormat df = new DecimalFormat("0.00");
+      int weight = 0, totalweight = 0,
+            numberOfContainers = 0;
+      double cost;
+
+      // While loop
+      while (weight != -1){
+         totalweight += weight;
+         numberOfContainers++;
+         weight = getWeight(numberOfContainers);
+      }//while
+
+      numberOfContainers--;
+      cost = calculateCost(numberOfContainers, totalweight);
+      System.out.println("The total number of containers is "
+      + numberOfContainers);
+      System.out.println("The total weight of the containers is "
+      + totalweight);
+      System.out.println("THe total cost of transport is £"
+      +df.format(cost));
+   }//main
 }//class
