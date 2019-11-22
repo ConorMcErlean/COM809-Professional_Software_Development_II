@@ -5,19 +5,25 @@ Created on: 19/11/2019
 Additional Comments...
 */
 
+import java.time.Year;
+import java.util.Calendar;
+
 public class Car2 {
    // Class Variables
    private int id, yearOfManufacture, topSpeed;
    private String make, ownerName, colour;
    private double costPrice;
+   private static int numberOfCars = 0;
 
    // Constructors
    public Car2(){
+      numberOfCars++;
    }// Default
 
    public Car2(int carID, String carMake, String carOwner,
                String carColour, int carYearofMan,
                int topSpeed, double carPrice){
+      numberOfCars++;
       id = carID;
       make = carMake;
       ownerName = carOwner;
@@ -28,6 +34,7 @@ public class Car2 {
    } // All values assigned constructor
 
    public Car2(int id, String make, String owner, String colour){
+      numberOfCars++;
       this.id = id;
       this.make = make;
       ownerName = owner;
@@ -38,6 +45,7 @@ public class Car2 {
    } // 4 Parameter constructor
 
    public Car2(int id, String owner, int topSpeed){
+      numberOfCars++;
       this.id = id;
       ownerName = owner;
       this.topSpeed = topSpeed;
@@ -115,5 +123,37 @@ public class Car2 {
 
    public void setCostPrice(double costPrice) {
       this.costPrice = costPrice;
+   }
+
+   public int ageOfCar(){
+      if (yearOfManufacture > 0) {
+         int age;
+         System.out.println(yearOfManufacture);
+         Calendar c = Calendar.getInstance();
+
+
+//       System.out.println("Current year: " + c.getWeekYear());
+//        System.out.println("Manufacture year: " + yearOfManufacture);
+         age = c.getWeekYear() - yearOfManufacture;
+         return age;
+      }//if
+      else{
+         return -1;
+      }//else
+   }//ageOfCar
+
+   //Accepts double value (deprication in %) and returns current value of car
+   public double currentValue(double depreciationRate) {
+      if ((costPrice>0) && (ageOfCar() != -1)) {
+         double currentValue = costPrice - (costPrice * (depreciationRate / 100) *
+               ageOfCar());
+         return currentValue;
+      }//if
+      else return -1;
+
+   }//current Value
+
+   public static int numberOfCars(){
+      return numberOfCars;
    }
 }//class
