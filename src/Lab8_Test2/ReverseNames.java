@@ -30,8 +30,11 @@ public class ReverseNames {
 
       System.out.println("The names reversed are:");
       for (int index = 1; index <= names.length; index ++){
-         // Take the 'index' from the length to get the array index values
-         // backwards
+         /*
+         Take the 'index' from the length, start at 1 rather than 0 to avoid
+         out of bounds error to get the array index values backwards, the print
+         the name at that index value ie. 4, 3, 2, 1, 0.
+          */
          System.out.print(names[names.length - index] + "\t");
       }//for
       System.out.println();
